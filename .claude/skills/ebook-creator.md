@@ -1,81 +1,81 @@
-# eBook Creator Skill
+# Skill Criador de eBook
 
-Create professional McKinsey-style eBooks with AI-generated cover images.
+Crie eBooks profissionais estilo McKinsey com imagens de capa geradas por IA.
 
-## When to Use
+## Quando Usar
 
-Invoke this skill when the user asks to:
-- Create an ebook, report, or whitepaper
-- Generate a professional document with a cover page
-- Make a PDF report or downloadable content
+Invoque esta skill quando o usuário pedir para:
+- Criar um ebook, relatório ou whitepaper
+- Gerar um documento profissional com página de capa
+- Fazer um relatório em PDF ou conteúdo para download
 
-## Design Philosophy
+## Filosofia de Design
 
-Default style is **McKinsey Consulting** aesthetic:
-- Full-bleed abstract cover image (AI-generated)
-- Clean white text on dark backdrop overlay
-- Company branding at top-left
-- Bold sans-serif titles (Arial)
-- Accent color for key words (cyan/teal)
-- Dark accent bar at bottom
+O estilo padrão é a estética de **Consultoria McKinsey**:
+- Imagem de capa abstrata em sangria total (gerada por IA)
+- Texto branco limpo sobre sobreposição de fundo escuro
+- Marca da empresa no canto superior esquerdo
+- Títulos em negrito sans-serif (Arial)
+- Cor de destaque para palavras-chave (ciano/verde-azulado)
+- Barra de destaque escura na parte inferior
 
-## Workflow
+## Fluxo de Trabalho
 
-### Step 1: Gather Requirements
+### Passo 1: Coletar Requisitos
 
-Before generating, ask the user:
+Antes de gerar, pergunte ao usuário:
 
-1. **Title**: What is the ebook called?
-2. **Subtitle**: One-liner describing the content
-3. **Company/Author**: Who is publishing this?
-4. **Cover Style** (optional): Default is abstract AI visualization
+1. **Título**: Qual é o nome do ebook?
+2. **Subtítulo**: Uma linha descrevendo o conteúdo
+3. **Empresa/Autor**: Quem está publicando?
+4. **Estilo da Capa** (opcional): Padrão é visualização abstrata com IA
 
-If user doesn't specify design preferences, use our default McKinsey style. Push back on:
-- Clipart or stock photos → suggest abstract AI imagery
-- Multiple fonts → stick to Arial
-- Bright/neon colors → suggest corporate blues, teals
-- Comic Sans → professional sans-serif only
+Se o usuário não especificar preferências de design, use nosso estilo McKinsey padrão. Recuse educadamente:
+- Clipart ou fotos de banco de imagens → sugira imagens abstratas com IA
+- Múltiplas fontes → mantenha Arial
+- Cores brilhantes/neon → sugira azuis e verdes-azulados corporativos
+- Comic Sans → apenas sans-serif profissional
 
-### Step 2: Generate Cover Image
+### Passo 2: Gerar Imagem de Capa
 
-Edit `generate_image.py` prompt for their topic:
+Edite o prompt em `generate_image.py` para o tópico:
 
 ```python
-prompt = "Abstract visualization of [TOPIC], swirling [BRAND_COLORS] patterns emanating from a luminous center, professional corporate style, soft gradients, ethereal atmosphere, suitable as ebook cover"
+prompt = "Abstract visualization of [TOPICO], swirling [CORES_DA_MARCA] patterns emanating from a luminous center, professional corporate style, soft gradients, ethereal atmosphere, suitable as ebook cover"
 ```
 
-Run:
+Execute:
 ```bash
 source venv/bin/activate && python generate_image.py
 ```
 
-Output: `output/cover_image.png`
+Saída: `output/cover_image.png`
 
-### Step 3: Update Document
+### Passo 3: Atualizar Documento
 
-Edit `ai_report_package/create_report.js`:
+Edite `ai_report_package/create_report.js`:
 
-**Colors** (top of file):
+**Cores** (topo do arquivo):
 ```javascript
 const BLUE = '1E5FAA';
 const DARK_BLUE = '0A2744';
 const ACCENT_BLUE = '2B7DE9';
 ```
 
-**Cover text** (search for "McKINSEY-STYLE COVER PAGE"):
-- Update "Prompt Advisers" → their company
-- Update "THE STATE OF AI 2026" → their title
-- Update subtitle text
+**Texto da capa** (procure por "McKINSEY-STYLE COVER PAGE"):
+- Atualize "Prompt Advisers" → empresa do usuário
+- Atualize "THE STATE OF AI 2026" → título do usuário
+- Atualize texto do subtítulo
 
-### Step 4: Generate Output
+### Passo 4: Gerar Saída
 
 ```bash
 cd ai_report_package && node create_report.js
 ```
 
-Output: `output/State_of_AI_2026.docx`
+Saída: `output/State_of_AI_2026.docx`
 
-### Step 5: Convert to PDF
+### Passo 5: Converter para PDF
 
 macOS:
 ```bash
@@ -87,24 +87,24 @@ Linux:
 libreoffice --headless --convert-to pdf output/State_of_AI_2026.docx
 ```
 
-## File Structure
+## Estrutura de Arquivos
 
 ```
 eBook Maker/
 ├── .claude/skills/
-│   └── ebook-creator.md    # This file
+│   └── ebook-creator.md    # Este arquivo
 ├── ai_report_package/
-│   ├── create_report.js    # Document generator
-│   └── logo.png            # Company logo
-├── output/                 # All generated files
+│   ├── create_report.js    # Gerador de documento
+│   └── logo.png            # Logo da empresa
+├── output/                 # Todos os arquivos gerados
 │   ├── cover_image.png
 │   └── *.docx, *.pdf
-├── sample/                 # Example output
-├── generate_image.py       # Cover generator
+├── sample/                 # Exemplo de saída
+├── generate_image.py       # Gerador de capa
 ├── requirements.txt
 └── .env                    # GEMINI_API_KEY
 ```
 
-## Sample
+## Exemplo
 
-See `sample/` folder for example output demonstrating the default style.
+Veja a pasta `sample/` para exemplo de saída demonstrando o estilo padrão.

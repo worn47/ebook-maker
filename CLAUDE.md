@@ -1,99 +1,102 @@
 # eBook Maker
 
-Generate professional McKinsey-style eBooks with AI-generated covers.
+Gere eBooks profissionais estilo McKinsey com capas geradas por IA.
 
-## Quick Start
+## Início Rápido
 
-Just say:
-> "Create an ebook about [your topic]"
+Basta dizer:
+> "Crie um ebook sobre [seu tópico]"
 
-Claude will invoke the `ebook-creator` skill and guide you through the process.
+O Claude invocará a skill `ebook-creator` e guiará você pelo processo.
 
-## What You Get
+## O Que Você Obtém
 
-See `sample/` folder for example output:
-- Professional full-bleed cover with AI-generated abstract imagery
-- Clean typography and corporate color scheme
-- Multi-section document with table of contents
-- PDF ready for distribution
+Veja a pasta `sample/` para exemplo de saída:
+- Capa profissional com imagem abstrata gerada por IA
+- Tipografia limpa e esquema de cores corporativo
+- Documento com múltiplas seções e índice
+- PDF pronto para distribuição
 
-## Setup
+## Configuração
 
-### 1. API Key
+### 1. Chave de API
 
-Add your Gemini API key to `.env`:
+Adicione sua chave de API do Gemini ao `.env`:
 ```
-GEMINI_API_KEY=your_key_here
+GEMINI_API_KEY=sua_chave_aqui
 ```
 
-### 2. Install Dependencies
+### 2. Instalar Dependências
 
 ```bash
-# Python (for cover image generation)
+# Python (para geração da imagem de capa)
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-# Node.js (for document generation)
+# Node.js (para geração do documento)
 cd ai_report_package && npm install
 ```
 
-### 3. PDF Conversion (Optional)
+### 3. Conversão para PDF (Opcional)
 
-Requires LibreOffice for .docx to .pdf conversion.
+Requer LibreOffice para conversão de .docx para .pdf.
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
 eBook Maker/
 ├── .claude/skills/
-│   └── ebook-creator.md    # Skill with full workflow
+│   └── ebook-creator.md    # Skill com fluxo completo
 ├── ai_report_package/
-│   ├── create_report.js    # Document generator (edit for content)
-│   └── logo.png            # Company logo
-├── output/                 # Generated files go here
+│   ├── create_report.js    # Gerador de documento (edite para conteúdo)
+│   └── logo.png            # Logo da empresa
+├── output/                 # Arquivos gerados vão aqui
 │   ├── cover_image.png
 │   └── State_of_AI_2026.docx/.pdf
-├── sample/                 # Example output for reference
-├── generate_image.py       # Cover image generator (edit prompt)
+├── sample/                 # Exemplo de saída para referência
+├── generate_image.py       # Gerador de imagem de capa (edite o prompt)
 ├── requirements.txt
-└── .env                    # API key (not committed)
+└── .env                    # Chave de API (não commitado)
 ```
 
-## Customization
+## Personalização
 
-| What | Where |
-|------|-------|
-| Cover image style | `generate_image.py` → edit `prompt` variable |
-| Brand colors | `ai_report_package/create_report.js` → top of file |
-| Title & subtitle | `ai_report_package/create_report.js` → cover section |
-| Report content | `ai_report_package/create_report.js` → content sections |
+| O quê | Onde |
+|-------|------|
+| Estilo da imagem de capa | `generate_image.py` → edite a variável `prompt` |
+| Cores da marca | `ai_report_package/create_report.js` → topo do arquivo |
+| Título e subtítulo | `ai_report_package/create_report.js` → seção da capa |
+| Conteúdo do relatório | `ai_report_package/create_report.js` → seções de conteúdo |
 
-## Commands Reference
+## Referência de Comandos
 
 ```bash
-# Generate cover image
+# Gerar imagem de capa
 source venv/bin/activate && python generate_image.py
 
-# Generate document
+# Gerar documento
 cd ai_report_package && node create_report.js
 
-# Convert to PDF (macOS)
+# Converter para PDF (macOS)
 /Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf output/State_of_AI_2026.docx
+
+# Converter para PDF (Linux)
+libreoffice --headless --convert-to pdf output/State_of_AI_2026.docx
 ```
 
-## Default Design
+## Design Padrão
 
-McKinsey-inspired consulting aesthetic:
-- Full-bleed AI-generated abstract cover
-- White text on dark semi-transparent backdrop
-- Arial typography throughout
-- Corporate blue/teal palette
-- Bottom accent bar with tagline
+Estética de consultoria inspirada na McKinsey:
+- Capa com imagem abstrata gerada por IA em sangria total
+- Texto branco sobre fundo escuro semi-transparente
+- Tipografia Arial em todo o documento
+- Paleta de cores azul/verde-azulado corporativo
+- Barra de destaque na parte inferior com tagline
 
-## Notes
+## Notas
 
-- Always run scripts directly — never ask user to run them
-- Cover uses Gemini 3 Pro Image (`gemini-3-pro-image-preview`)
-- Document uses docx library v8.x
-- All measurements in DXA units (1440 DXA = 1 inch)
+- Sempre execute os scripts diretamente — nunca peça ao usuário para executá-los
+- A capa usa Gemini 3 Pro Image (`gemini-3-pro-image-preview`)
+- O documento usa biblioteca docx v8.x
+- Todas as medidas em unidades DXA (1440 DXA = 1 polegada)

@@ -1,267 +1,267 @@
 # eBook Maker
 
-> Generate professional McKinsey-style eBooks with AI-generated covers in minutes.
+> Gere eBooks profissionais estilo McKinsey com capas geradas por IA em minutos.
 
-![Sample Cover](sample/cover_image.png)
+![Capa de Exemplo](sample/cover_image.png)
 
-Transform your content into polished, professional eBooks with stunning AI-generated covers. No design skills required.
+Transforme seu conteúdo em eBooks polidos e profissionais com capas impressionantes geradas por IA. Nenhuma habilidade de design necessária.
 
-## What You'll Create
+## O Que Você Vai Criar
 
-- **Professional Cover Pages** — Full-bleed AI-generated abstract imagery
-- **Clean Typography** — McKinsey-inspired corporate aesthetic
-- **Complete Documents** — Table of contents, styled sections, headers/footers
-- **Print-Ready PDFs** — Export to PDF with one command
+- **Capas Profissionais** — Imagens abstratas geradas por IA em sangria total
+- **Tipografia Limpa** — Estética corporativa inspirada na McKinsey
+- **Documentos Completos** — Índice, seções estilizadas, cabeçalhos/rodapés
+- **PDFs Prontos para Impressão** — Exporte para PDF com um comando
 
-[See sample output →](sample/State_of_AI_2026.pdf)
+[Veja exemplo de saída →](sample/State_of_AI_2026.pdf)
 
 ---
 
-## Quick Start (5 Minutes)
+## Início Rápido (5 Minutos)
 
-### Prerequisites
+### Pré-requisitos
 
 - **Node.js** (v16+) — [Download](https://nodejs.org/)
 - **Python 3.8+** — [Download](https://python.org/)
-- **LibreOffice** (for PDF export) — [Download](https://libreoffice.org/)
+- **LibreOffice** (para exportar PDF) — [Download](https://libreoffice.org/)
 
-### Step 1: Clone the Repository
+### Passo 1: Clonar o Repositório
 
 ```bash
-git clone https://github.com/promptadvisers/ebook-maker.git
+git clone https://github.com/inematds/ebook-maker.git
 cd ebook-maker
 ```
 
-### Step 2: Get Your API Key
+### Passo 2: Obter Sua Chave de API
 
-You'll need a **Google Gemini API key** (free tier available):
+Você precisará de uma **chave de API do Google Gemini** (plano gratuito disponível):
 
-1. Go to [Google AI Studio](https://aistudio.google.com/apikey)
-2. Click **"Create API Key"**
-3. Copy your key
+1. Vá para [Google AI Studio](https://aistudio.google.com/apikey)
+2. Clique em **"Create API Key"**
+3. Copie sua chave
 
-### Step 3: Configure
+### Passo 3: Configurar
 
-Create a `.env` file in the root directory:
+Crie um arquivo `.env` no diretório raiz:
 
 ```bash
-echo "GEMINI_API_KEY=your_api_key_here" > .env
+echo "GEMINI_API_KEY=sua_chave_api_aqui" > .env
 ```
 
-### Step 4: Install Dependencies
+### Passo 4: Instalar Dependências
 
 ```bash
-# Python dependencies (for cover image generation)
+# Dependências Python (para geração da imagem de capa)
 python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # No Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
-# Node.js dependencies (for document generation)
+# Dependências Node.js (para geração do documento)
 cd ai_report_package && npm install && cd ..
 ```
 
-### Step 5: Generate Your First eBook
+### Passo 5: Gerar Seu Primeiro eBook
 
 ```bash
-# Create output directory
+# Criar diretório de saída
 mkdir -p output
 
-# Generate cover image
+# Gerar imagem de capa
 source venv/bin/activate && python generate_image.py
 
-# Generate document
+# Gerar documento
 cd ai_report_package && node create_report.js && cd ..
 
-# Convert to PDF (macOS)
+# Converter para PDF (macOS)
 /Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf output/State_of_AI_2026.docx
 
-# Convert to PDF (Linux)
+# Converter para PDF (Linux)
 libreoffice --headless --convert-to pdf output/State_of_AI_2026.docx
 ```
 
-Your eBook is ready in `output/`!
+Seu eBook está pronto em `output/`!
 
 ---
 
-## Customization Guide
+## Guia de Personalização
 
-### Change the Cover Image
+### Alterar a Imagem de Capa
 
-Edit `generate_image.py` and modify the `prompt` variable:
+Edite `generate_image.py` e modifique a variável `prompt`:
 
 ```python
-prompt = "Abstract visualization of YOUR_TOPIC, swirling blue and teal patterns, professional corporate style, soft gradients, ethereal atmosphere"
+prompt = "Abstract visualization of SEU_TOPICO, swirling blue and teal patterns, professional corporate style, soft gradients, ethereal atmosphere"
 ```
 
-**Tips for great prompts:**
-- Be specific about colors (match your brand)
-- Use "abstract" or "visualization" for professional looks
-- Add "corporate", "professional", "clean" for business aesthetic
-- Avoid: photos, clipart, busy patterns
+**Dicas para ótimos prompts:**
+- Seja específico sobre as cores (combine com sua marca)
+- Use "abstract" ou "visualization" para aparência profissional
+- Adicione "corporate", "professional", "clean" para estética empresarial
+- Evite: fotos, clipart, padrões muito ocupados
 
-### Change Title & Branding
+### Alterar Título e Marca
 
-Edit `ai_report_package/create_report.js`:
+Edite `ai_report_package/create_report.js`:
 
-**1. Find the cover section** (search for `McKINSEY-STYLE COVER PAGE`)
+**1. Encontre a seção da capa** (procure por `McKINSEY-STYLE COVER PAGE`)
 
-**2. Update these values:**
+**2. Atualize estes valores:**
 ```javascript
-// Company name
-new TextRun({ text: "Your Company", ... })
+// Nome da empresa
+new TextRun({ text: "Sua Empresa", ... })
 
-// Main title
-new TextRun({ text: "YOUR TITLE", ... })
+// Título principal
+new TextRun({ text: "SEU TÍTULO", ... })
 
-// Subtitle
-new TextRun({ text: "Your subtitle here", ... })
+// Subtítulo
+new TextRun({ text: "Seu subtítulo aqui", ... })
 ```
 
-### Change Colors
+### Alterar Cores
 
-At the top of `create_report.js`, modify:
+No topo de `create_report.js`, modifique:
 
 ```javascript
-const BLUE = "1E5FAA";        // Primary blue
-const DARK_BLUE = "0A2744";   // Headers, footer bar
-const ACCENT_BLUE = "2B7DE9"; // Accent color (highlighted words)
+const BLUE = "1E5FAA";        // Azul principal
+const DARK_BLUE = "0A2744";   // Cabeçalhos, barra do rodapé
+const ACCENT_BLUE = "2B7DE9"; // Cor de destaque (palavras destacadas)
 ```
 
-Use any hex color (without the `#`).
+Use qualquer cor hexadecimal (sem o `#`).
 
 ---
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
 ebook-maker/
 ├── .claude/
 │   └── skills/
-│       └── ebook-creator.md    # Claude Code skill (optional)
+│       └── ebook-creator.md    # Skill do Claude Code (opcional)
 ├── ai_report_package/
-│   ├── create_report.js        # Main document generator
-│   ├── logo.png                # Your company logo
+│   ├── create_report.js        # Gerador principal de documentos
+│   ├── logo.png                # Logo da sua empresa
 │   └── package.json
-├── output/                     # Generated files (gitignored)
-├── sample/                     # Example output
+├── output/                     # Arquivos gerados (gitignored)
+├── sample/                     # Exemplo de saída
 │   ├── cover_image.png
 │   └── State_of_AI_2026.pdf
-├── generate_image.py           # AI cover generator
-├── requirements.txt            # Python dependencies
-├── CLAUDE.md                   # Claude Code instructions
-└── README.md                   # You are here
+├── generate_image.py           # Gerador de capa com IA
+├── requirements.txt            # Dependências Python
+├── CLAUDE.md                   # Instruções do Claude Code
+└── README.md                   # Você está aqui
 ```
 
 ---
 
-## Using with Claude Code
+## Usando com Claude Code
 
-This repo includes a skill for [Claude Code](https://claude.ai/code). Just say:
+Este repositório inclui uma skill para [Claude Code](https://claude.ai/code). Basta dizer:
 
-> "Create an ebook about [your topic]"
+> "Crie um ebook sobre [seu tópico]"
 
-Claude will:
-1. Ask for your title, subtitle, and company name
-2. Generate a custom cover image
-3. Build the document
-4. Export to PDF
-
----
-
-## API Keys Explained
-
-### Google Gemini API (Required)
-
-**What it's for:** Generating the AI cover images
-
-**Cost:** Free tier includes 60 requests/minute
-
-**Get it:**
-1. Visit [Google AI Studio](https://aistudio.google.com/apikey)
-2. Sign in with Google
-3. Click "Create API Key"
-4. Add to `.env` file
+O Claude vai:
+1. Perguntar seu título, subtítulo e nome da empresa
+2. Gerar uma imagem de capa personalizada
+3. Construir o documento
+4. Exportar para PDF
 
 ---
 
-## Troubleshooting
+## Chaves de API Explicadas
 
-### "Module not found" errors
+### Google Gemini API (Obrigatória)
+
+**Para que serve:** Gerar as imagens de capa com IA
+
+**Custo:** Plano gratuito inclui 60 requisições/minuto
+
+**Como obter:**
+1. Visite [Google AI Studio](https://aistudio.google.com/apikey)
+2. Faça login com Google
+3. Clique em "Create API Key"
+4. Adicione ao arquivo `.env`
+
+---
+
+## Solução de Problemas
+
+### Erros de "Module not found"
 
 ```bash
-# Make sure you're in the virtual environment
+# Certifique-se de estar no ambiente virtual
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Cover image not generating
+### Imagem de capa não está gerando
 
-1. Check your API key in `.env`
-2. Ensure you have internet connection
-3. Try a simpler prompt first
+1. Verifique sua chave de API no `.env`
+2. Certifique-se de ter conexão com a internet
+3. Tente um prompt mais simples primeiro
 
-### PDF conversion fails
+### Conversão para PDF falha
 
-**macOS:** Make sure LibreOffice is installed in `/Applications/`
+**macOS:** Certifique-se de que o LibreOffice está instalado em `/Applications/`
 
-**Linux:** Install with `sudo apt install libreoffice`
+**Linux:** Instale com `sudo apt install libreoffice`
 
-**Windows:** Use LibreOffice GUI or install via [chocolatey](https://chocolatey.org/): `choco install libreoffice`
+**Windows:** Use a interface do LibreOffice ou instale via [chocolatey](https://chocolatey.org/): `choco install libreoffice`
 
-### Document looks wrong
+### Documento parece errado
 
-- Check that `output/cover_image.png` exists before running `create_report.js`
-- Ensure Node.js dependencies are installed: `cd ai_report_package && npm install`
-
----
-
-## Tech Stack
-
-| Component | Technology |
-|-----------|------------|
-| Cover Generation | Google Gemini 3 Pro Image |
-| Document Creation | Node.js + [docx](https://www.npmjs.com/package/docx) library |
-| PDF Export | LibreOffice (headless) |
-| AI Assistant | Claude Code (optional) |
+- Verifique se `output/cover_image.png` existe antes de executar `create_report.js`
+- Certifique-se de que as dependências Node.js estão instaladas: `cd ai_report_package && npm install`
 
 ---
 
-## Examples
+## Stack Tecnológica
 
-### Business Report
+| Componente | Tecnologia |
+|------------|------------|
+| Geração de Capa | Google Gemini 3 Pro Image |
+| Criação de Documento | Node.js + biblioteca [docx](https://www.npmjs.com/package/docx) |
+| Exportação PDF | LibreOffice (headless) |
+| Assistente IA | Claude Code (opcional) |
+
+---
+
+## Exemplos
+
+### Relatório Empresarial
 ```python
 prompt = "Abstract visualization of business growth and data analytics, ascending geometric shapes in navy blue and gold, professional corporate style"
 ```
 
-### Tech Whitepaper
+### Whitepaper de Tecnologia
 ```python
 prompt = "Abstract neural network and cloud computing visualization, glowing blue nodes connected by light streams, futuristic tech aesthetic"
 ```
 
-### Healthcare Guide
+### Guia de Saúde
 ```python
 prompt = "Abstract visualization of medical innovation, soft teal and white flowing patterns, clean and calming healthcare aesthetic"
 ```
 
 ---
 
-## Contributing
+## Contribuindo
 
-PRs welcome! Ideas for improvement:
-- [ ] More document templates
-- [ ] Web interface
-- [ ] Multiple cover style presets
-- [ ] Batch generation
+PRs são bem-vindos! Ideias para melhorias:
+- [ ] Mais templates de documentos
+- [ ] Interface web
+- [ ] Múltiplos presets de estilo de capa
+- [ ] Geração em lote
 
 ---
 
-## License
+## Licença
 
-MIT — use it however you want.
+MIT — use como quiser.
 
 ---
 
 <p align="center">
-  <b>Built with Claude Code</b><br>
+  <b>Construído com Claude Code</b><br>
   <a href="https://claude.ai/code">claude.ai/code</a>
 </p>
