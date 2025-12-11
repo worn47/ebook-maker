@@ -1,133 +1,241 @@
 # eBook Maker
 
-> Gere eBooks profissionais estilo McKinsey com capas geradas por IA em minutos.
+> Gere eBooks profissionais com capas geradas por IA em minutos. Zero conhecimento técnico necessário.
 
 ![Capa de Exemplo](sample/cover_image.png)
 
-Transforme seu conteúdo em eBooks polidos e profissionais com capas impressionantes geradas por IA. Nenhuma habilidade de design necessária.
+---
 
-## O Que Você Vai Criar
+## Para Iniciantes: Use com Claude Code (Mais Fácil!)
 
-- **Capas Profissionais** — Imagens abstratas geradas por IA em sangria total
-- **Tipografia Limpa** — Estética corporativa inspirada na McKinsey
-- **Documentos Completos** — Índice, seções estilizadas, cabeçalhos/rodapés
-- **PDFs Prontos para Impressão** — Exporte para PDF com um comando
+Se você tem o **Claude Code** instalado, não precisa fazer nada manual. Basta dizer:
 
-[Veja exemplo de saída →](sample/State_of_AI_2026.pdf)
+> "Crie um ebook sobre [seu tópico]"
+
+O Claude faz todo o trabalho automaticamente!
+
+**Não tem Claude Code?** [Instale aqui](https://claude.ai/code) e siga o tutorial abaixo.
 
 ---
 
-## Início Rápido (5 Minutos)
+## Tutorial Completo para Leigos (Passo a Passo)
 
-### Pré-requisitos
+### O Que Você Vai Precisar
 
-- **Node.js** (v16+) — [Download](https://nodejs.org/)
-- **Python 3.8+** — [Download](https://python.org/)
-- **LibreOffice** (para exportar PDF) — [Download](https://libreoffice.org/)
+| Ferramenta | Para Que Serve | Link |
+|------------|----------------|------|
+| **Claude Code** | Assistente IA que cria o eBook | [claude.ai/code](https://claude.ai/code) |
+| **Conta Google** | Para gerar imagens de capa | Você já tem! |
 
-### Passo 1: Clonar o Repositório
+### Passo 1: Instalar o Claude Code
+
+1. Acesse [claude.ai/code](https://claude.ai/code)
+2. Baixe o instalador para seu sistema (Windows/Mac/Linux)
+3. Execute o instalador e siga as instruções
+4. Abra o terminal e digite `claude` para verificar se funcionou
+
+### Passo 2: Baixar Este Projeto
+
+Abra o terminal e digite:
 
 ```bash
 git clone https://github.com/inematds/ebook-maker.git
 cd ebook-maker
 ```
 
-### Passo 2: Obter Sua Chave de API
+### Passo 3: Obter Chave da API do Google (Grátis)
 
-Você precisará de uma **chave de API do Google Gemini** (plano gratuito disponível):
+1. Acesse [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
+2. Faça login com sua conta Google
+3. Clique em **"Create API Key"**
+4. Copie a chave gerada (parece com: `AIzaSy...`)
 
-1. Vá para [Google AI Studio](https://aistudio.google.com/apikey)
-2. Clique em **"Create API Key"**
-3. Copie sua chave
+### Passo 4: Iniciar o Claude Code
 
-### Passo 3: Configurar
-
-Crie um arquivo `.env` no diretório raiz:
-
-```bash
-echo "GEMINI_API_KEY=sua_chave_api_aqui" > .env
-```
-
-### Passo 4: Instalar Dependências
+No terminal, dentro da pasta do projeto:
 
 ```bash
-# Dependências Python (para geração da imagem de capa)
-python3 -m venv venv
-source venv/bin/activate  # No Windows: venv\Scripts\activate
-pip install -r requirements.txt
-
-# Dependências Node.js (para geração do documento)
-cd ai_report_package && npm install && cd ..
+claude
 ```
 
-### Passo 5: Gerar Seu Primeiro eBook
+### Passo 5: Configurar e Criar Seu eBook
 
-```bash
-# Criar diretório de saída
-mkdir -p output
+Agora é só conversar com o Claude! Diga:
 
-# Gerar imagem de capa
-source venv/bin/activate && python generate_image.py
+> "Configure a chave da API: [cole sua chave aqui]"
 
-# Gerar documento
-cd ai_report_package && node create_report.js && cd ..
+Depois:
 
-# Converter para PDF (macOS)
-/Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf output/State_of_AI_2026.docx
+> "Crie um ebook sobre [seu tema]"
 
-# Converter para PDF (Linux)
-libreoffice --headless --convert-to pdf output/State_of_AI_2026.docx
-```
+**Exemplo:**
+> "Crie um ebook sobre Marketing Digital para Pequenas Empresas"
 
-Seu eBook está pronto em `output/`!
+O Claude vai:
+1. Perguntar o título e subtítulo
+2. Gerar uma capa profissional com IA
+3. Criar todo o conteúdo formatado
+4. Exportar para PDF
+
+**Pronto! Seu eBook estará na pasta `output/`**
 
 ---
 
-## Guia de Personalização
+## 3 Layouts Disponíveis
 
-### Alterar a Imagem de Capa
+Este projeto inclui 3 estilos de layout profissionais:
 
-Edite `generate_image.py` e modifique a variável `prompt`:
+### 1. Editorial Clássico
+**Arquivo:** `layout_editorial_classico.js`
 
-```python
-prompt = "Abstract visualization of SEU_TOPICO, swirling blue and teal patterns, professional corporate style, soft gradients, ethereal atmosphere"
+**Ideal para:** Romances, biografias, livros de história
+
+**Características:**
+- Fonte serifada elegante (Georgia)
+- Capitulares decorativas (letra grande no início)
+- Epígrafes (citações no início dos capítulos)
+- Margens largas com proporção clássica
+- Ornamentos tipográficos (❦)
+- Numeração de página centralizada
+
+**Inspiração:** Penguin Classics, livros da Companhia das Letras
+
+```
++------------------------+
+|                        |
+|    CAPÍTULO I          |
+|    O Início            |
+|         ❧              |
+|  "Citação elegante"    |
+|      — Autor           |
+|                        |
+|  ERA uma vez, em um    |
+|  reino distante...     |
+|                        |
+|         12             |
++------------------------+
 ```
 
-**Dicas para ótimos prompts:**
-- Seja específico sobre as cores (combine com sua marca)
-- Use "abstract" ou "visualization" para aparência profissional
-- Adicione "corporate", "professional", "clean" para estética empresarial
-- Evite: fotos, clipart, padrões muito ocupados
+---
 
-### Alterar Título e Marca
+### 2. Moderno Funcional
+**Arquivo:** `layout_moderno_funcional.js`
 
-Edite `ai_report_package/create_report.js`:
+**Ideal para:** Guias, tutoriais, eBooks de marketing, manuais
 
-**1. Encontre a seção da capa** (procure por `McKINSEY-STYLE COVER PAGE`)
+**Características:**
+- Fonte sans-serif limpa (Arial)
+- Caixas coloridas de destaque (Dicas, Avisos, Resumos)
+- Listas e bullets bem definidos
+- Cabeçalhos numerados com linhas divisórias
+- Foco em escaneabilidade e aprendizado rápido
 
-**2. Atualize estes valores:**
+**Inspiração:** Livros da O'Reilly, A Book Apart
+
+```
++------------------------+
+|  GUIA PRÁTICO      P.4 |
+|  ________________      |
+|                        |
+|  # 1. O Conceito       |
+|                        |
+|  +------------------+  |
+|  | 💡 DICA:         |  |
+|  | Sempre comece... |  |
+|  +------------------+  |
+|                        |
+|  • Item 1              |
+|  • Item 2              |
+|  • Item 3              |
+|                        |
++------------------------+
+```
+
+---
+
+### 3. Minimalista Suíço
+**Arquivo:** `layout_minimalista_suico.js`
+
+**Ideal para:** Portfólios, manifestos, livros de design/arquitetura
+
+**Características:**
+- Grid assimétrico (coluna de notas + texto principal)
+- Muito espaço em branco intencional
+- Títulos gigantes em negrito
+- Apenas preto, branco e cinza
+- Texto alinhado à esquerda (nunca justificado)
+
+**Inspiração:** Josef Müller-Brockmann, Vignelli Canon
+
+```
++------------------------+
+|                        |
+|  01.                   |
+|  A BASE                |
+|                        |
+|  Nota:     O design    |
+|            não é só    |
+|            aparência.  |
+|                        |
+|            É função.   |
+|                        |
+|                        |
+|  2                     |
++------------------------+
+```
+
+---
+
+## Como Usar os Layouts
+
+### Método 1: Via Claude Code (Recomendado)
+
+Simplesmente peça ao Claude:
+
+> "Crie um eBook usando o layout Editorial Clássico sobre [tema]"
+
+ou
+
+> "Use o layout Moderno Funcional para criar um guia sobre [tema]"
+
+ou
+
+> "Quero um eBook estilo Minimalista Suíço sobre [tema]"
+
+### Método 2: Executar Diretamente
+
+```bash
+# Entrar na pasta do projeto
+cd ebook-maker/ai_report_package
+
+# Gerar com Layout Editorial Clássico
+node layout_editorial_classico.js
+
+# Gerar com Layout Moderno Funcional
+node layout_moderno_funcional.js
+
+# Gerar com Layout Minimalista Suíço
+node layout_minimalista_suico.js
+
+# Converter para PDF (Linux)
+libreoffice --headless --convert-to pdf ../output/Layout_Editorial_Classico.docx
+```
+
+### Método 3: Personalizar o Layout
+
+Cada arquivo de layout exporta funções reutilizáveis. Exemplo com Editorial Clássico:
+
 ```javascript
-// Nome da empresa
-new TextRun({ text: "Sua Empresa", ... })
+const {
+  createChapterTitle,  // Título de capítulo elegante
+  createEpigraph,      // Citação no início
+  createDropCap,       // Capitular decorativa
+  createParagraph,     // Parágrafo com indentação
+  createSectionBreak   // Separador * * *
+} = require('./layout_editorial_classico.js');
 
-// Título principal
-new TextRun({ text: "SEU TÍTULO", ... })
-
-// Subtítulo
-new TextRun({ text: "Seu subtítulo aqui", ... })
+// Use as funções para criar seu conteúdo personalizado
 ```
-
-### Alterar Cores
-
-No topo de `create_report.js`, modifique:
-
-```javascript
-const BLUE = "1E5FAA";        // Azul principal
-const DARK_BLUE = "0A2744";   // Cabeçalhos, barra do rodapé
-const ACCENT_BLUE = "2B7DE9"; // Cor de destaque (palavras destacadas)
-```
-
-Use qualquer cor hexadecimal (sem o `#`).
 
 ---
 
@@ -135,83 +243,174 @@ Use qualquer cor hexadecimal (sem o `#`).
 
 ```
 ebook-maker/
+├── ai_report_package/
+│   ├── create_report.js              # Layout McKinsey (padrão)
+│   ├── layout_editorial_classico.js  # Layout 1: Romances
+│   ├── layout_moderno_funcional.js   # Layout 2: Guias/Tutoriais
+│   ├── layout_minimalista_suico.js   # Layout 3: Design/Portfólio
+│   ├── logo.png
+│   └── package.json
 ├── .claude/
 │   └── skills/
-│       └── ebook-creator.md    # Skill do Claude Code (opcional)
-├── ai_report_package/
-│   ├── create_report.js        # Gerador principal de documentos
-│   ├── logo.png                # Logo da sua empresa
-│   └── package.json
-├── output/                     # Arquivos gerados (gitignored)
-├── sample/                     # Exemplo de saída
-│   ├── cover_image.png
-│   └── State_of_AI_2026.pdf
-├── generate_image.py           # Gerador de capa com IA
-├── requirements.txt            # Dependências Python
-├── CLAUDE.md                   # Instruções do Claude Code
-└── README.md                   # Você está aqui
+│       └── ebook-creator.md          # Skill do Claude Code
+├── output/                           # Arquivos gerados
+├── sample/                           # Exemplos
+├── generate_image.py                 # Gerador de capas com IA
+├── requirements.txt
+├── CLAUDE.md
+└── README.md
 ```
 
 ---
 
-## Usando com Claude Code
+## Instalação Manual (Para Desenvolvedores)
 
-Este repositório inclui uma skill para [Claude Code](https://claude.ai/code). Basta dizer:
+Se preferir não usar o Claude Code:
 
-> "Crie um ebook sobre [seu tópico]"
+### Pré-requisitos
 
-O Claude vai:
-1. Perguntar seu título, subtítulo e nome da empresa
-2. Gerar uma imagem de capa personalizada
-3. Construir o documento
-4. Exportar para PDF
+- Node.js v16+ — [nodejs.org](https://nodejs.org/)
+- Python 3.8+ — [python.org](https://python.org/)
+- LibreOffice — [libreoffice.org](https://libreoffice.org/)
+
+### Instalação
+
+```bash
+# Clonar repositório
+git clone https://github.com/inematds/ebook-maker.git
+cd ebook-maker
+
+# Configurar API
+echo "GEMINI_API_KEY=sua_chave_aqui" > .env
+
+# Instalar dependências Python
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Instalar dependências Node.js
+cd ai_report_package && npm install && cd ..
+
+# Criar pasta de saída
+mkdir -p output
+```
+
+### Gerar eBook
+
+```bash
+# 1. Gerar imagem de capa
+source venv/bin/activate && python generate_image.py
+
+# 2. Gerar documento (escolha um layout)
+cd ai_report_package
+node create_report.js                  # McKinsey (padrão)
+# ou
+node layout_editorial_classico.js      # Clássico
+# ou
+node layout_moderno_funcional.js       # Funcional
+# ou
+node layout_minimalista_suico.js       # Minimalista
+
+# 3. Converter para PDF
+cd ..
+libreoffice --headless --convert-to pdf output/*.docx
+```
 
 ---
 
-## Chaves de API Explicadas
+## Personalização Avançada
 
-### Google Gemini API (Obrigatória)
+### Alterar Cores
 
-**Para que serve:** Gerar as imagens de capa com IA
+Cada layout tem constantes de cor no topo do arquivo:
 
-**Custo:** Plano gratuito inclui 60 requisições/minuto
+**Editorial Clássico:**
+```javascript
+const DARK_BROWN = "3D2914";
+const GOLD = "8B7355";
+```
 
-**Como obter:**
-1. Visite [Google AI Studio](https://aistudio.google.com/apikey)
-2. Faça login com Google
-3. Clique em "Create API Key"
-4. Adicione ao arquivo `.env`
+**Moderno Funcional:**
+```javascript
+const PRIMARY_BLUE = "0066CC";
+const ACCENT_ORANGE = "FF6600";
+```
+
+**Minimalista Suíço:**
+```javascript
+const BLACK = "000000";
+const MEDIUM_GRAY = "999999";
+```
+
+### Alterar Fontes
+
+Procure por `font: "Georgia"` ou `font: "Arial"` e substitua por:
+- Serifadas: `"Times New Roman"`, `"Garamond"`, `"Palatino"`
+- Sans-serif: `"Helvetica"`, `"Roboto"`, `"Open Sans"`
+
+### Adicionar Novas Seções
+
+Use as funções auxiliares de cada layout:
+
+```javascript
+// Editorial Clássico
+createChapterTitle("III", "Novo Capítulo")
+createEpigraph("Citação inspiradora", "Autor")
+createDropCap("A", "qui começa o texto...")
+
+// Moderno Funcional
+createSectionHeader("03", "NOVA SEÇÃO")
+createTipBox("DICA", "Conteúdo da dica")
+createWarningBox("Aviso importante!")
+createSummaryBox(["Item 1", "Item 2", "Item 3"])
+
+// Minimalista Suíço
+createSectionTitle("03.", "NOVO TEMA")
+createTwoColumnLayout("Nota lateral", "Texto principal aqui")
+createQuote("Citação impactante")
+```
 
 ---
 
 ## Solução de Problemas
 
-### Erros de "Module not found"
-
+### "Module not found"
 ```bash
-# Certifique-se de estar no ambiente virtual
-source venv/bin/activate
-pip install -r requirements.txt
+cd ai_report_package && npm install
 ```
 
-### Imagem de capa não está gerando
+### "GEMINI_API_KEY not found"
+```bash
+echo "GEMINI_API_KEY=sua_chave" > .env
+```
 
-1. Verifique sua chave de API no `.env`
-2. Certifique-se de ter conexão com a internet
-3. Tente um prompt mais simples primeiro
+### PDF não gera
+```bash
+# Linux
+sudo apt install libreoffice
 
-### Conversão para PDF falha
+# macOS
+brew install libreoffice
+```
 
-**macOS:** Certifique-se de que o LibreOffice está instalado em `/Applications/`
+### Imagem de capa não aparece
+Certifique-se de que existe `output/cover_image.png` antes de rodar o layout.
 
-**Linux:** Instale com `sudo apt install libreoffice`
+---
 
-**Windows:** Use a interface do LibreOffice ou instale via [chocolatey](https://chocolatey.org/): `choco install libreoffice`
+## Exemplos de Prompts para o Claude
 
-### Documento parece errado
+```
+"Crie um eBook sobre Inteligência Artificial para Iniciantes"
 
-- Verifique se `output/cover_image.png` existe antes de executar `create_report.js`
-- Certifique-se de que as dependências Node.js estão instaladas: `cd ai_report_package && npm install`
+"Use o layout Editorial Clássico para criar um livro de poesias"
+
+"Gere um guia prático de Marketing Digital com layout Moderno Funcional"
+
+"Crie um portfólio minimalista sobre Design de Interiores"
+
+"Faça um eBook sobre Produtividade com capa azul e dourada"
+```
 
 ---
 
@@ -220,38 +419,9 @@ pip install -r requirements.txt
 | Componente | Tecnologia |
 |------------|------------|
 | Geração de Capa | Google Gemini 3 Pro Image |
-| Criação de Documento | Node.js + biblioteca [docx](https://www.npmjs.com/package/docx) |
+| Criação de Documento | Node.js + [docx](https://www.npmjs.com/package/docx) |
 | Exportação PDF | LibreOffice (headless) |
-| Assistente IA | Claude Code (opcional) |
-
----
-
-## Exemplos
-
-### Relatório Empresarial
-```python
-prompt = "Abstract visualization of business growth and data analytics, ascending geometric shapes in navy blue and gold, professional corporate style"
-```
-
-### Whitepaper de Tecnologia
-```python
-prompt = "Abstract neural network and cloud computing visualization, glowing blue nodes connected by light streams, futuristic tech aesthetic"
-```
-
-### Guia de Saúde
-```python
-prompt = "Abstract visualization of medical innovation, soft teal and white flowing patterns, clean and calming healthcare aesthetic"
-```
-
----
-
-## Contribuindo
-
-PRs são bem-vindos! Ideias para melhorias:
-- [ ] Mais templates de documentos
-- [ ] Interface web
-- [ ] Múltiplos presets de estilo de capa
-- [ ] Geração em lote
+| Assistente IA | Claude Code |
 
 ---
 

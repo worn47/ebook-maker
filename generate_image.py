@@ -15,7 +15,7 @@ load_dotenv()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Define the prompt for abstract AI cover image
-prompt = "Abstract visualization of artificial intelligence and data flow, swirling blue and teal neural network patterns emanating from a bright luminous center, professional corporate style, soft gradients transitioning from deep navy blue edges to bright white center, ethereal and futuristic atmosphere, suitable as ebook cover background"
+prompt = "Abstract visualization of prompt engineering and human-AI communication, glowing text particles and neural pathways converging into a brilliant golden center, flowing streams of light representing language and knowledge, professional corporate style with deep purple and gold gradients, ethereal futuristic atmosphere, clean modern design suitable as premium ebook cover background"
 
 print(f"Generating image with prompt: {prompt}")
 print("Using model: gemini-3-pro-image-preview (Nano Banana Pro)")
